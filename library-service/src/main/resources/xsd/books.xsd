@@ -1,0 +1,112 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.espe.edu.ec/library"
+           targetNamespace="https://www.espe.edu.ec/library" elementFormDefault="qualified">
+    <xs:element name="getBooksRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBooksResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:BookModel" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBookResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:BookModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:BookModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addBookResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:BookModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateBookResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteBookResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- types -->
+
+    <xs:complexType name="GenreModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BookModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="author" type="tns:AuthorModel" minOccurs="0"/>
+            <xs:element name="year" type="xs:int" minOccurs="0"/>
+            <xs:element name="genres" type="tns:GenreModel" maxOccurs="unbounded"/>
+            <xs:element name="publisher" type="xs:string" minOccurs="0"/>
+            <xs:element name="isbn" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="image" type="tns:RequestImage" minOccurs="0"/>
+            <xs:element name="imageUrl" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RequestImage">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="data" type="xs:base64Binary"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AuthorModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="firstname" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string" minOccurs="0"/>
+            <xs:element name="pseudonym" type="xs:string" minOccurs="0"/>
+            <xs:element name="birthdate" type="xs:date" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

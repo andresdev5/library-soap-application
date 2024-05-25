@@ -1,0 +1,82 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.espe.edu.ec/library"
+           targetNamespace="https://www.espe.edu.ec/library" elementFormDefault="qualified">
+    <xs:element name="getAuthorsRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAuthorsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="author" type="tns:AuthorModel" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAuthorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="author" type="tns:AuthorModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="author" type="tns:AuthorModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addAuthorResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="author" type="tns:AuthorModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateAuthorResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteAuthorResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- types -->
+
+    <xs:complexType name="AuthorModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="firstname" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string" minOccurs="0"/>
+            <xs:element name="pseudonym" type="xs:string" minOccurs="0"/>
+            <xs:element name="birthdate" type="xs:date" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

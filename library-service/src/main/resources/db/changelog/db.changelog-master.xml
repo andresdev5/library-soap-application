@@ -1,0 +1,87 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="Andres Jacome">
+        <createTable tableName="authors">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pseudonym" type="varchar(255)"/>
+            <column name="birthdate" type="date"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Andres Jacome">
+        <createTable tableName="genres">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="genres" columnNames="name" constraintName="unique_genre_name"/>
+    </changeSet>
+
+    <changeSet id="3" author="Andres Jacome">
+        <createTable tableName="books">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publisher" type="varchar(255)"/>
+            <column name="isbn" type="varchar(13)"/>
+            <column name="price" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="varchar(255)"/>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="books" columnNames="isbn" constraintName="unique_book_isbn"/>
+        <addForeignKeyConstraint
+                baseTableName="books"
+                baseColumnNames="author_id"
+                referencedTableName="authors"
+                referencedColumnNames="id"
+                constraintName="fk_books_authors"/>
+    </changeSet>
+
+    <changeSet id="4" author="Andres Jacome">
+        <createTable tableName="books_genres">
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="books_genres"
+                baseColumnNames="book_id"
+                referencedTableName="books"
+                referencedColumnNames="id"
+                constraintName="fk_book_genres_books"/>
+        <addForeignKeyConstraint
+                baseTableName="books_genres"
+                baseColumnNames="genre_id"
+                referencedTableName="genres"
+                referencedColumnNames="id"
+                constraintName="fk_book_genres_genres"/>
+    </changeSet>
+
+</databaseChangeLog>

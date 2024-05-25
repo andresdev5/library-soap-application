@@ -1,0 +1,80 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.espe.edu.ec/library"
+           targetNamespace="https://www.espe.edu.ec/library" elementFormDefault="qualified">
+    <xs:element name="getGenresRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getGenresResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="genres" type="tns:GenreModel" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getGenreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getGenreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="genre" type="tns:GenreModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addGenreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addGenreResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateGenreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateGenreResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteGenreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteGenreResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- types -->
+
+    <xs:complexType name="GenreModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
