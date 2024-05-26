@@ -1,11 +1,6 @@
 ﻿using LibrarySoapService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LibraryClient.Model
+namespace LibraryClient.Models
 {
     public class Author
     {
