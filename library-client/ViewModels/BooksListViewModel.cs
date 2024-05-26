@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using Wpf.Ui.Controls;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LibraryClient.ViewModels
 {
@@ -28,12 +29,7 @@ namespace LibraryClient.ViewModels
             {
                 InitializeViewModel();
             }
-        }
 
-        public void OnNavigatedFrom() { }
-
-        private void InitializeViewModel()
-        {
             try
             {
                 Task.Run(() => LoadBooks());
@@ -43,7 +39,12 @@ namespace LibraryClient.ViewModels
                 // Log error
                 Console.Write(ex.ToString());
             }
-            
+        }
+
+        public void OnNavigatedFrom() { }
+
+        private void InitializeViewModel()
+        {
             _isInitialized = true;
         }
 
@@ -55,6 +56,8 @@ namespace LibraryClient.ViewModels
 
             Application.Current.Dispatcher.Invoke(() =>
             {
+                Books.Clear();
+
                 books.ToList<BookModel>().ForEach(model =>
                 {
                     Books.Add(new Book(model));

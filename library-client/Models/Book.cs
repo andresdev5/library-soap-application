@@ -114,8 +114,18 @@ namespace LibraryClient.Models
             _price = model.price;
             _isbn = model.isbn;
             _publisher = model.publisher;
-            _imageUrl = model.imageUrl;
-            _image = new BitmapImage(new Uri(model.imageUrl));
+
+            if (model.imageUrl != null && model.imageUrl != "")
+            {
+                _imageUrl = model.imageUrl;
+                _image = new BitmapImage(new Uri(model.imageUrl));
+            }
+            else
+            {
+                _imageUrl = "https://i.imgur.com/XVthRcs.png";
+                _image = new BitmapImage(new Uri(_imageUrl));
+            }
+
             _author = new Author(model.author);
         }
 

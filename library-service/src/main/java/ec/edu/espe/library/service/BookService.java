@@ -46,7 +46,7 @@ public class BookService {
     }
 
     public GetBooksResponse getAllBooks() {
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = bookRepository.findAllByOrderByIdDesc();
         GetBooksResponse response = new GetBooksResponse();
 
         books.forEach(book -> {

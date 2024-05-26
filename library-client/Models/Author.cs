@@ -65,5 +65,23 @@ namespace LibraryClient.Models
             _pseudonym = model.pseudonym;
             _birthdate = model.birthdate;
         }
+
+        public string CompleteDisplayName
+        {
+            get
+            {
+                var values = new List<string>
+                {
+                    _id.ToString() + " -",
+                    _firstname,
+                    _lastname,
+                    _pseudonym,
+                };
+
+                    return string.Join(" ", values.Where(v => !string.IsNullOrEmpty(v)));
+            }
+        }
+
+        public override string ToString() => CompleteDisplayName;
     }
 }

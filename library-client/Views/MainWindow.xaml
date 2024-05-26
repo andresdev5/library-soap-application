@@ -38,7 +38,13 @@
         <ui:NavigationView
             x:Name="RootNavigation"
             Grid.Row="1"
+            FrameMargin="0"
+            IsBackButtonVisible="Collapsed"
+            IsPaneToggleVisible="True"
+            TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}"
+            BreadcrumbBar="{Binding ElementName=BreadcrumbBar}"
             FooterMenuItemsSource="{Binding ViewModel.NavigationFooter, Mode=OneWay}"
+            SelectionChanged="OnNavigationSelectionChanged"
             MenuItemsSource="{Binding ViewModel.NavigationItems, Mode=OneWay}">
             <!--<ui:NavigationView.AutoSuggestBox>
                 <ui:AutoSuggestBox x:Name="AutoSuggestBox" PlaceholderText="Search">
@@ -51,26 +57,20 @@
             </ui:NavigationView.AutoSuggestBox>-->
             <ui:NavigationView.Header>
                 <ui:BreadcrumbBar
-                    Margin="42,32,0,0"
-                    FontSize="28"
-                    FontWeight="DemiBold" />
+                    x:Name="BreadcrumbBar"
+                    Margin="10"
+                    FontSize="14" />
             </ui:NavigationView.Header>
+            <ui:NavigationView.ContentOverlay>
+                <Grid>
+                    <ui:SnackbarPresenter x:Name="SnackbarPresenter" />
+                </Grid>
+            </ui:NavigationView.ContentOverlay>
         </ui:NavigationView>
 
         <ui:TitleBar
             Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
             Grid.Row="0"
             Icon="pack://application:,,,/Assets/applicationIcon-256.png" />
-
-        <!--<tray:NotifyIcon
-            Grid.Row="0"
-            FocusOnLeftClick="True"
-            Icon="pack://application:,,,/Assets/applicationIcon-256.png"
-            MenuOnRightClick="True"
-            TooltipText="WPF UI - MVVM Demo">
-            <tray:NotifyIcon.Menu>
-                <ContextMenu ItemsSource="{Binding ViewModel.TrayMenuItems, Mode=OneWay}" />
-            </tray:NotifyIcon.Menu>
-        </tray:NotifyIcon>-->
     </Grid>
 </ui:FluentWindow>

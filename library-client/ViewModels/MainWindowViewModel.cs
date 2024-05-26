@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using Wpf.Ui;
 using Wpf.Ui.Controls;
 
@@ -19,7 +20,7 @@ namespace LibraryClient.ViewModels
         private ObservableCollection<object> _navigationFooter = [];
 
         [ObservableProperty]
-        private ObservableCollection<MenuItem> _trayMenuItems = [];
+        private ObservableCollection<Wpf.Ui.Controls.MenuItem> _trayMenuItems = [];
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Style",
@@ -41,9 +42,23 @@ namespace LibraryClient.ViewModels
             [
                 new NavigationViewItem()
             {
-                Content = "Últimos libros",
+                Content = "Libros",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.Book24 },
-                TargetPageType = typeof(Views.Pages.BooksListPage)
+                MenuItemsSource = new object[]
+                {
+                    new NavigationViewItem()
+                    {
+                        Content = "Últimos libros",
+                        Icon = new SymbolIcon { Symbol = SymbolRegular.List24 },
+                        TargetPageType = typeof(Views.Pages.BooksListPage),
+                    },
+                    new NavigationViewItem()
+                    {
+                        Content = "Agregar libro",
+                        Icon = new SymbolIcon { Symbol = SymbolRegular.Add24 },
+                        TargetPageType = typeof(Views.Pages.AddBookPage),
+                    }
+                }
             },
         ];
 

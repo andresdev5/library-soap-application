@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using LibraryClient.Views.Pages;
+using System.Windows;
 using Wpf.Ui;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
@@ -15,7 +16,9 @@ namespace LibraryClient.Views
         public MainWindow(
             ViewModels.MainWindowViewModel viewModel,
             IPageService pageService,
-            INavigationService navigationService
+            INavigationService navigationService,
+            IServiceProvider serviceProvider,
+            ISnackbarService snackbarService
         )
         {
             ViewModel = viewModel;
@@ -24,12 +27,15 @@ namespace LibraryClient.Views
             InitializeComponent();
             SetPageService(pageService);
 
+            snackbarService.SetSnackbarPresenter(SnackbarPresenter);
             navigationService.SetNavigationControl(RootNavigation);
             ApplicationThemeManager.Apply(
                 ApplicationTheme.Light,
                 WindowBackdropType.None,
                 false
             );
+
+            RootNavigation.SetServiceProvider(serviceProvider);
         }
 
         public INavigationView GetNavigation() => RootNavigation;
@@ -51,6 +57,19 @@ namespace LibraryClient.Views
 
             // Make sure that closing this window will begin the process of closing the application.
             Application.Current.Shutdown();
+        }
+
+        private void OnNavigationSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is not Wpf.Ui.Controls.NavigationView navigationView)
+            {
+                return;
+            }
+
+            RootNavigation.SetCurrentValue(
+                NavigationView.HeaderVisibilityProperty,
+                Visibility.Visible
+            );
         }
 
         INavigationView INavigationWindow.GetNavigation()

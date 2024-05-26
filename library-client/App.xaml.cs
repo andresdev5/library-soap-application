@@ -46,6 +46,9 @@ public partial class App
                 // TaskBar manipulation
                 _ = services.AddSingleton<ITaskBarService, TaskBarService>();
 
+                // Snackbar service
+                _ = services.AddSingleton<ISnackbarService, SnackbarService>();
+
                 // Service containing navigation, same as INavigationWindow... but without window
                 _ = services.AddSingleton<INavigationService, NavigationService>();
 
@@ -56,6 +59,8 @@ public partial class App
                 // Views and ViewModels
                 _ = services.AddSingleton<Views.Pages.BooksListPage>();
                 _ = services.AddSingleton<ViewModels.BooksListViewModel>();
+                _ = services.AddSingleton<Views.Pages.AddBookPage>();
+                _ = services.AddSingleton<ViewModels.AddBookViewModel>();
 
                 // Configuration
                 _ = services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

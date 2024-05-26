@@ -7,7 +7,9 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:models="clr-namespace:LibraryClient.Models"
       xmlns:controls="clr-namespace:LibraryClient.Controls"
+      Title="BooksListPage"
       mc:Ignorable="d" 
+      d:Background="White"
       d:DataContext="{d:DesignInstance local:BooksListPage,
                                      IsDesignTimeCreatable=False}"
       d:DesignHeight="450" d:DesignWidth="800">
