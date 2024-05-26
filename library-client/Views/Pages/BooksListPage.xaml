@@ -7,6 +7,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:models="clr-namespace:LibraryClient.Models"
       xmlns:controls="clr-namespace:LibraryClient.Controls"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       Title="BooksListPage"
       mc:Ignorable="d" 
       d:Background="White"
@@ -21,7 +22,12 @@
             ItemsSource="{Binding ViewModel.Books, Mode=OneWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:Book}">
-                    <controls:BookCard DataContext="{Binding}" Margin="5" />
+                    <controls:BookCard 
+                        DataContext="{Binding}" 
+                        Margin="5"
+                        OnDelete="BookCard_OnDelete"
+                        OnEdit="BookCard_OnEdit"
+                    />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingItemsControl>

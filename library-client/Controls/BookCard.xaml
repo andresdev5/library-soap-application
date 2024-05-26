@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:LibraryClient.Controls"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+             xmlns:vm="clr-namespace:LibraryClient.ViewModels"
              mc:Ignorable="d" Height="197" Width="354">
     <Border Margin="1"
                 BorderBrush="LightGray"
@@ -66,8 +67,7 @@
                         Margin="0" 
                         FontSize="9"
                         Padding="5,0,5,2" 
-                        Command="{Binding EditCommand}" 
-                        CommandParameter="{Binding}"
+                        Click="ButtonEdit_Click"
                         Appearance="Info" 
                         Content="Editar"
                     />
@@ -76,8 +76,7 @@
                         FontSize="9"
                         Foreground="White"
                         Padding="5,0,5,2"
-                        Command="{Binding EditCommand}" 
-                        CommandParameter="{Binding}"
+                        Click="ButtonDelete_Click"
                         Appearance="Danger" 
                         Content="Eliminar"
                     />

@@ -15,5 +15,15 @@ namespace LibraryClient.Views.Pages
             DataContext = this;
             InitializeComponent();
         }
+
+        public void BookCard_OnDelete(object sender, EventArgs e)
+        {
+            ViewModel.DeleteBookCommand.Execute(sender);
+        }
+
+        public void BookCard_OnEdit(object sender, EventArgs e)
+        {
+            ViewModel.EditBookCommand.Execute(sender);
+        }
     }
 }

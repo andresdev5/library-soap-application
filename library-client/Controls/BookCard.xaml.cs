@@ -20,9 +20,28 @@ namespace LibraryClient.Controls
     /// </summary>
     public partial class BookCard : UserControl
     {
+        public event EventHandler? OnDelete;
+        public event EventHandler? OnEdit;
+
         public BookCard()
         {
             InitializeComponent();
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnEdit != null)
+            {
+                OnEdit(DataContext, e);
+            }
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnDelete != null)
+            {
+                OnDelete(DataContext, e);
+            }
         }
     }
 }

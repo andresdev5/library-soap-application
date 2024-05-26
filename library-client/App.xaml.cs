@@ -53,6 +53,7 @@ public partial class App
                 _ = services.AddSingleton<INavigationService, NavigationService>();
 
                 // Main window with navigation
+                _ = services.AddSingleton<INavigationParams, NavigationParams>();
                 _ = services.AddSingleton<INavigationWindow, Views.MainWindow>();
                 _ = services.AddSingleton<ViewModels.MainWindowViewModel>();
 
@@ -61,6 +62,8 @@ public partial class App
                 _ = services.AddSingleton<ViewModels.BooksListViewModel>();
                 _ = services.AddSingleton<Views.Pages.AddBookPage>();
                 _ = services.AddSingleton<ViewModels.AddBookViewModel>();
+                _ = services.AddSingleton<Views.Pages.EditBookPage>();
+                _ = services.AddSingleton<ViewModels.EditBookViewModel>();
 
                 // Configuration
                 _ = services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

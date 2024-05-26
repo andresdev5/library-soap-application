@@ -15,6 +15,7 @@ namespace LibraryClient.Models
         private string _imageUrl;
         private BitmapImage _image;
         private Author _author;
+        private List<Genre> _genres = new List<Genre>();
 
         public long Id
         {
@@ -106,6 +107,16 @@ namespace LibraryClient.Models
             }
         }
 
+        public List<Genre> Genres
+        {
+            get { return _genres; }
+            set
+            {
+                _genres = value;
+                OnPropertyChanged(nameof(Genres));
+            }
+        }
+
         public Book(BookModel model)
         {
             _id = model.id;
@@ -125,6 +136,11 @@ namespace LibraryClient.Models
                 _imageUrl = "https://i.imgur.com/XVthRcs.png";
                 _image = new BitmapImage(new Uri(_imageUrl));
             }
+
+            model.genres.ToList<GenreModel>().ForEach(genre =>
+            {
+                _genres.Add(new Genre(genre));
+            });
 
             _author = new Author(model.author);
         }
